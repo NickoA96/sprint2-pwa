@@ -2,9 +2,9 @@ create database proyectogrupal;
 
 use proyectogrupal;
 
-create table empleados(
-idEmpleado int not null auto_increment primary key,
+create table productos(
+idProducto int not null auto_increment primary key,
 nombre varchar(80) not null,
-apellido varchar(80) not null,	
-email varchar(80) not null
+marca varchar(80) not null,	
+precio int(80) not null
 );
