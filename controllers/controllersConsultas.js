@@ -10,7 +10,7 @@ const consultas = (req, res, next) => {
      conexion.query(sql,  (err, result) => {
          if (err) throw err;
     res.render('consultas', {
-        titulo: 'Listado de Producto',
+        
         result : result
     })
     })
