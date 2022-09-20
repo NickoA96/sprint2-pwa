@@ -3,8 +3,10 @@ const conexion = require ('../db/db');
 
 // renderizar get producto
 const productos = (req, res) => {
-    res.render('productos');
-}
+    res.render('productos', {
+        itulo: 'Agregar producto',
+})
+    }
 
 
 
