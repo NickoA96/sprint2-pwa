@@ -11,7 +11,7 @@ const consultas = (req, res) => {
          if (err) throw err;
     res.render('consultas', {
         titulo: 'Listado de Producto',
-        result
+        result : result
     })
     })
 }
