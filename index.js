@@ -31,7 +31,7 @@ var consultasRouter = require('./routes/consultas');
 
 
 app.use('/', indexRouter);
-app.use ('/formulario', productoRouter);
+app.use ('/productos', productoRouter);
 app.use ('/consultas', consultasRouter);
 
 
