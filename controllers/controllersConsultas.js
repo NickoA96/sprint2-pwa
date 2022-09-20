@@ -4,7 +4,7 @@ const conexion = require ('../db/db');
 
 
 
-const consultas = (req, res) => {
+const consultas = (req, res, next) => {
      let sql = 'SELECT * FROM m67m8dht55xhkbmc.productos ';
 
      conexion.query(sql,  (err, result) => {
