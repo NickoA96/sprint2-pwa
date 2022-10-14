@@ -1,7 +1,7 @@
 const mongodb = require('mongodb');
 
 const MongoClient =mongodb.MongoClient;
-const MONGOLOCAL = process.env.MONGOLOCAL;
+// const MONGOLOCAL = process.env.MONGOLOCAL;
 const DATABASE = process.env.DATABASE;
 const MONGOATLAS = process.env.MONGOATLAS;
 
