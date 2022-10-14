@@ -1,5 +1,7 @@
 
-const conexion = require ('../db/db');
+const MongoClient = require('mongodb').MongoClient;
+
+
 
 // renderizar get producto
 const productos = (req, res) => {
@@ -12,33 +14,32 @@ const productos = (req, res) => {
 
 
     
-// renderizar post producto
+// conectar a mongo y agregar producto
 const productosPost = (req, res) => {
-    const {nombre, marca, precio} = req.body;
 
-    
-        if(nombre == '' || marca == '' || precio == ''){
-            let validacion = 'Rellene los campos correctamente..';
-            res.render('productos', {
-                titulo: 'Agregar producto',
-                validacion
-        })
-        }else{
-            let confirmacion = 'Producto agregado correctamente..';
-            conexion.query('INSERT INTO m67m8dht55xhkbmc.productos SET ?', {nombre, marca, precio}, 
-    (error, results) => {
-            res.render('productos', {
-                titulo: 'Agregar producto',
-                confirmacion
+    MongoClient.connect(process.env.MONGOATLAS, (err, db) => {
+        const database =db.db(process.env.DATABASE)
+        
+        if (err) {
+            console.log("Error al conectar a la base de datos", err);
+        } else {
+            let confirmacion = "Producto agregado con éxito"
+            const {nombre, marca, precio}= req.body;
+
+            database.collection ('productos').insertOne({nombre, marca, precio}, (err, result) => {
+                if (err) {
+                    console.log("Error en la conexión")
+                } else {
+                    res.render('productos', {
+                        titulo: 'Agregar producto',
+                        confirmacion
+                    })
+                }
             })
         }
-    )}
-    }
+    })
+}
 
-
-
-            
-        
 
 
 

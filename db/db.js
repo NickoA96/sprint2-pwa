@@ -1,19 +1,26 @@
-const mysql = require('mysql2');
+const mongodb = require('mongodb');
 
-//conectar con la base de datos
-const conexion = mysql.createConnection({
-    host: process.env.HOST,
-    user: process.env.USER,
-    password: process.env.PASSWORD,
-    database: process.env.DATABASE
-})
+const MongoClient =mongodb.MongoClient;
+const MONGOLOCAL = process.env.MONGOLOCAL;
+const DATABASE = process.env.DATABASE;
+const MONGOATLAS = process.env.MONGOATLAS;
 
-conexion.connect((error) => {
-    if(error){
+
+//conectar a mongo
+const conexion = async () => {
+    try {
+        const client = await mongodb.connect(MONGOATLAS, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        });
+        return client.db(DATABASE);
+    } catch (error) {
         console.log(error);
-    }else{
-        console.log('Conectado a la base de datos');
     }
-})
+}
 
-module.exports = conexion;
+module.exports = {
+    conexion,
+    MongoClient,
+    mongodb,
+}

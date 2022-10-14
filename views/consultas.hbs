@@ -1,7 +1,3 @@
-
-
-
-
 <div class="container text-center  ">
 
     <h3 >
@@ -11,21 +7,26 @@
 </div>
 
 
-
+<div class="table-responsive">
 <table class="table table-dark table-striped">
     <thead>
         <th>Id Productos</th>
         <th>Nombre</th>
         <th>Marca</th>
         <th>Precio</th>
+        <th>Accion</th>
     </thead>
     <tbody>
         {{#each result}}
         <tr>
-            <td>{{idProducto}}</td>
+            <td>{{_id}}</td>
             <td>{{nombre}}</td>
             <td>{{marca}}</td>
             <td>{{precio}}</td>
+            <td>
+                <a href="eliminar/{{_id}}" class="btn btn-danger">Eliminar</a>
+                <a href="actualizar/{{_id}}" class="btn btn-warning">Actualizar</a>
+            </td>
         </tr>
     </tbody>
     {{/each}}
